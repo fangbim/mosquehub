@@ -63,7 +63,7 @@ export default function Page() {
             <Navbar />
             <div className="flex flex-col items-center justify-center mb-8">
                 <h1 className={`${bungee.className} text-4xl md:text-6xl`}>Doa Harian</h1>
-                <p className="mx-10 xl:mx-72 my-6 text-sm md:text-base text-center font-extralight font-poppins">
+                <p className="mx-10 xl:mx-72 my-6 text-sm md:text-base text-center font-normal font-poppins">
                     Doa Harian adalah kumpulan doa-doa pendek yang dapat dibaca setiap hari untuk memulai dan menutup aktivitas harian. Doa-doa ini berisi permohonan perlindungan, petunjuk, serta rasa syukur kepada Tuhan atas segala nikmat dan kesempatan. Dengan melafalkan doa harian, seseorang diingatkan untuk selalu bersyukur, tetap rendah hati, dan berserah diri kepada kehendak Tuhan dalam setiap aspek kehidupan.
                 </p>
             </div>
