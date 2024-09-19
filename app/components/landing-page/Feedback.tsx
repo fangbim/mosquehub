@@ -1,4 +1,4 @@
-import BTNPrimary from "./button/BtnPrimary";
+import BTNPrimary from "../button/BtnPrimary";
 
 export default function Feedback() {
   return (

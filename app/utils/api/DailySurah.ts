@@ -1,5 +1,3 @@
-
-
 export default async function getSurat () {
     const surat : number = Math.floor(Math.random() * 114) + 1;
     

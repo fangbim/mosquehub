@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 export default function Logo() {
-    const imgresponsive : number= 80;
+    const imgresponsive : number = 80;
     return (
         <div className="flex items-center">
         <Image
-          width={100 && imgresponsive}
-          height={100 && imgresponsive}
+          width={imgresponsive}
+          height={imgresponsive}
           src="/images/logo-mosqueku.png"
           alt="logo"
           priority={true}
