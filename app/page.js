@@ -1,9 +1,9 @@
-import DailySurah from "./components/landing-page/DailySurah";
-import Features from "./components/landing-page/Features";
-import Feedback from "./components/landing-page/Feedback";
-import Footer from "./components/landing-page/Footer";
-import Hero from "./components/landing-page/Hero";
-import Navbar from "./components/landing-page/Navbar";
+import DailySurah from "./components/lp/DailySurah";
+import Features from "./components/lp/Features";
+import Feedback from "./components/lp/Feedback";
+import Footer from "./components/lp/Footer";
+import Hero from "./components/lp/Hero";
+import Navbar from "./components/lp/Navbar";
 
 export default function Home() {
   return (

@@ -1,104 +1,155 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import DoaHarian from "../utils/api/DoaHarian";
-import Navbar from "../components/landing-page/Navbar";
-import { Bungee, Changa_One } from "@next/font/google";
+import Navbar from "../components/lp/Navbar";
+import { amiri, cangaOne, pOne } from "../lib/fonts";
+import Loading from "../components/loading";
 
-const bungee = Bungee({ subsets: ['latin'], weight: ['400']})
-const cangaOne = Changa_One({ subsets: ['latin'], weight: ['400']})
+import { Button, IconButton } from "@material-tailwind/react";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+
+function DoaList() {
+  const [doaList, setDoaList] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 5; // Jumlah doa per halaman
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await DoaHarian();
+      if (data) {
+        setDoaList(data);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const totalPages = Math.ceil(doaList.length / itemsPerPage);
+
+  const getItemProps = (index) =>
+    ({
+      variant: currentPage === index ? "filled" : "text",
+      color: "gray",
+      onClick: () => {
+        setCurrentPage(index) 
+        window.scrollTo(0, 0)
+    },
+      
+    } as any);
+
+  const currentDoaList = doaList.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const goToNextPage = () => {
+    if (currentPage === 5) return;
+    setCurrentPage(currentPage + 1);
+
+    window.scrollTo(0, 0);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage === 1) return;
+    setCurrentPage(currentPage - 1);
+
+    window.scrollTo(0, 0);
+  };
+  return (
+    <>
+      {" "}
+      {currentDoaList.length > 0 ? (
+        <div>
+          {currentDoaList.map((doa) => (
+            <section
+              className="flex items-center justify-center pb-5"
+              key={doa.id}
+            >
+              <div className="grid bg-[#384B70] w-full py-10 px-6 md:px-20 rounded-xl text-white gap-3">
+                <p
+                  className={`${cangaOne.className} text-5xl md:text-6xl text-[#F5EFFF]`}
+                >
+                  {doa.judul}
+                </p>
+                <p
+                  className={`${amiri.className} text-4xl md:text-5xl text-right my-7 leading-[7rem] lg:leading-[7rem]`}
+                >
+                  {doa.arab}
+                </p>
+                <p className="font-medium font-sans text-gray-50 ">
+                  {doa.latin}
+                </p>
+                <p className="font-serif font-light bg-[#000000] px-4 py-2 rounded-md">
+                  &quot;{doa.terjemah}&quot;
+                </p>
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <Loading />
+      )}
+      <div className="flex items-center gap-0 md:gap-4 justify-center my-7">
+        <Button
+          variant="text"
+          className="flex items-center gap-2"
+          onClick={goToPreviousPage}
+          disabled={currentPage === 1}
+        >
+          <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
+        </Button>
+        <div className="flex items-center gap-2">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <IconButton key={index + 1} {...getItemProps(index + 1)}>
+              {index + 1}
+            </IconButton>
+          ))}
+        </div>
+        <Button
+          variant="text"
+          className="flex items-center gap-2"
+          onClick={goToNextPage}
+          disabled={currentPage === totalPages}
+        >
+          Next
+          <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+        </Button>
+      </div>
+    </>
+  );
+}
 
 export default function Page() {
-    const [doaList, setDoaList] = useState<any[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-
-    // State untuk pagination
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const itemsPerPage = 5; // Jumlah doa per halaman
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await DoaHarian();
-            if (data) {
-                setDoaList(data);
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
-
-    // Menghitung total halaman
-    const totalPages = Math.ceil(doaList.length / itemsPerPage);
-
-    // Mengambil doa yang sesuai dengan halaman saat ini
-    const currentDoaList = doaList.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
-
-    // Fungsi untuk mengganti halaman
-    const goToNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-        window.scrollTo(0, 0)
-    };
-
-    const goToPreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-        window.scrollTo(0, 0)
-    };
-
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center py-8 w-full h-screen">
-                <h1 className="text-[3rem] ">Lagi Loading tadz...</h1>
-            </div>
-        );
-    }
-
-    return (
-        <>
-            <Navbar />
-            <div className="flex flex-col items-center justify-center mb-8">
-                <h1 className={`${bungee.className} text-4xl md:text-6xl`}>Doa Harian</h1>
-                <p className="mx-10 xl:mx-72 my-6 text-sm md:text-base text-center font-normal font-poppins">
-                    Doa Harian adalah kumpulan doa-doa pendek yang dapat dibaca setiap hari untuk memulai dan menutup aktivitas harian. Doa-doa ini berisi permohonan perlindungan, petunjuk, serta rasa syukur kepada Tuhan atas segala nikmat dan kesempatan. Dengan melafalkan doa harian, seseorang diingatkan untuk selalu bersyukur, tetap rendah hati, dan berserah diri kepada kehendak Tuhan dalam setiap aspek kehidupan.
-                </p>
-            </div>
-
-            <div>
-                {currentDoaList.map((doa) => (
-                    <section className="flex items-center justify-center pb-5 px-5 md:px-32" key={doa.id}>
-                        <div className="grid bg-[#384B70] w-full py-10 px-6 md:px-20 rounded-xl text-white gap-3">
-                            <p className={`${cangaOne.className} text-6xl text-[#F5EFFF]`}>{doa.judul}</p>
-                            <p className="text-4xl text-right my-7 leading-loose font-serif">{doa.arab}</p>
-                            <p className="font-serif font-light">{doa.latin}</p>
-                            <p className="font-serif font-light bg-[#3C3D37] px-4 py-2">&quot;{doa.terjemah}&quot;</p>
-                        </div>
-                    </section>
-                ))}
-            </div>
-
-            {/* Kontrol Pagination */}
-            <div className="flex justify-center my-8 items-center">
-                <button
-                    onClick={goToPreviousPage}
-                    disabled={currentPage === 1}
-                    className={`mx-2 px-4 py-2 border ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"}`}
-                >
-                    Previous
-                </button>
-                <span className="mx-4 py-2 text-lg text-center justify-center"> {currentPage} / {totalPages}</span>
-                <button
-                    onClick={goToNextPage}
-                    disabled={currentPage === totalPages}
-                    className={`mx-2 px-4 py-2 border ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"}`}
-                >
-                    Next
-                </button>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <Navbar />
+      <div className="mx-5 md:mx-32">
+        <div className="flex flex-col my-8">
+          <h1
+            className={`${pOne.className} text-6xl md:text-8xl md:text-left text-center`}
+          >
+            Doa Harian
+          </h1>
+          <div className="w-full h-[1px] bg-black"></div>
+          <p className="my-6 text-sm md:text-base md:text-left text-justify font-normal font-poppins">
+            Doa Harian adalah kumpulan doa-doa pendek yang dapat dibaca setiap
+            hari untuk memulai dan menutup aktivitas harian. Doa-doa ini berisi
+            permohonan perlindungan, petunjuk, serta rasa syukur kepada Tuhan
+            atas segala nikmat dan kesempatan. Dengan melafalkan doa harian,
+            seseorang diingatkan untuk selalu bersyukur, tetap rendah hati, dan
+            berserah diri kepada kehendak Tuhan dalam setiap aspek kehidupan.
+          </p>
+        </div>
+        <DoaList />
+        <div className="w-full items-start pb-10">
+          <div className="w-full h-[1px] bg-black"></div>
+          <p className="py-3">
+            API by{" "}
+            <a href="https://open-api.my.id/" target="_blank">
+              santrikoding.com
+            </a>
+          </p>
+        </div>
+      </div>
+    </>
+  );
 }
