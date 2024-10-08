@@ -8,7 +8,7 @@ import Navbar from "./components/lp/Navbar";
 export default function Home() {
   return (
     <>
-    <main className="min-w-full">
+    <main className="min-w-0">
       <Navbar/>
       <Hero/>
       <Features/>

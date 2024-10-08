@@ -1,11 +1,12 @@
 "use client";
 import { Button } from "@material-tailwind/react";
+import Image from "next/image";
 
 export default function OnGoing() {
   return (
     <div className="fixed inset-0 flex flex-col md:flex-row justify-center items-center">
       <div>
-        <img src="/cone.png" alt="Cone SVG" />
+        <Image src="/cone.png" alt="Cone SVG" width={200}  height={200} style={{ width: '100%', height: 'auto' }}/>
       </div>
       <div className="space-y-6">
         <div className="space-y-1">
