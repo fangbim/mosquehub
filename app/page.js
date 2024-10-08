@@ -8,12 +8,14 @@ import Navbar from "./components/lp/Navbar";
 export default function Home() {
   return (
     <>
-    <Navbar/>
-    <Hero/>
-    <Features/>
-    <DailySurah/>
-    <Feedback/>
-    <Footer/>
+    <main className="min-w-full">
+      <Navbar/>
+      <Hero/>
+      <Features/>
+      <DailySurah/>
+      <Feedback/>
+      <Footer/>
+    </main>
     </>
   )
 }

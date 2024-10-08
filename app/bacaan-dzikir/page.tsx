@@ -18,7 +18,7 @@ import Loading from "../components/loading";
 // Component for rendering dzikir list
 function DzikirList({ condition }: { condition: string }) {
   const [dzikirList, setDzikirList] = useState<any[]>([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [selectedBenefit, setSelectedBenefit] = useState<string | null>(null);
 
   const handleOpen = (benefit?: string) => {

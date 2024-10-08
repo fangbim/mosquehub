@@ -1,15 +1,11 @@
 import Navbar from "../components/lp/Navbar";
+import OnGoing from "../components/OnGoing";
 
 export default function Page() {
-    return(
-
-        <>
-            <Navbar />
-            <div className="flex items-center justify-center py-8">
-                <h1 className="text-[3rem] ">Berbagi Sesama</h1>
-            </div>
-        </>
-        
-        
-    );
-};
+  return (
+    <>
+      <Navbar />
+      <OnGoing />
+    </>
+  );
+}

@@ -1,4 +1,5 @@
 "use client";
+import React  from "react";
 import { useEffect, useState } from "react";
 import DoaHarian from "../utils/api/DoaHarian";
 import Navbar from "../components/lp/Navbar";
@@ -95,7 +96,7 @@ function DoaList() {
           onClick={goToPreviousPage}
           disabled={currentPage === 1}
         >
-          <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
+          <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> <span className=" hidden md:inline">Previous</span>
         </Button>
         <div className="flex items-center gap-2">
           {Array.from({ length: totalPages }, (_, index) => (
@@ -110,7 +111,7 @@ function DoaList() {
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
         >
-          Next
+          <span className=" hidden md:inline">Next</span>
           <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
         </Button>
       </div>

@@ -28,8 +28,9 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/login/pages.js"  ],
+    "**/*.tsx",
+    "app/login/pages.js"
+, "app/utils/api/JadwalSholat.ts"  ],
   "exclude": [
     "node_modules"
   ]

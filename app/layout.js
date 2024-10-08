@@ -1,6 +1,8 @@
 import './globals.css'
+import "react-day-picker/style.css";
 import {Poppins} from '@next/font/google'
 const poppins = Poppins({subsets: ['latin'], weight: ['100', '300', '500', '700']});
+
 
 export const metadata = {
   title: 'Mosque Ku',
