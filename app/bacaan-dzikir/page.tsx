@@ -14,6 +14,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Loading from "../components/loading";
+import ScrollToTopButton from "../components/button/ScrollToTopButton";
 
 // Component for rendering dzikir list
 function DzikirList({ condition }: { condition: string }) {
@@ -175,6 +176,7 @@ export default function Page() {
           </p>
         </div>
         <DzikirList condition={condition} />
+        <ScrollToTopButton/>
         <div className="w-full items-start pb-10">
           <div className="w-full h-[1px] bg-black"></div>
           <p className="py-3">
