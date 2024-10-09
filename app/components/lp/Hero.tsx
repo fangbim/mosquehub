@@ -1,3 +1,4 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 export default function Hero() {
@@ -6,10 +7,9 @@ export default function Hero() {
       <div className="flex items-center justify-center mt-9 bg-secondary md:bg-inherit">
         <div className="px-24 flex md:gap-40 2xl:w-[91.5rem] w-screen bg-secondary py-16 2xl:rounded-[50px] items-center justify-center">
           <div className="grid">
-            <h1 className="font-black text-4xl text-center md:text-left md:text-5xl text-white mb-5">
+            <h1 className="font-black text-4xl text-center md:text-left md:text-5xl text-white mb-5 my-2">
               Dapatkan Kemudahan Dalam Menjangkau Informasi Masjid
             </h1>
-
             <div className="grid md:hidden mx-16 my-4">
               <Image
                 src="/images/muslim.png"
@@ -19,20 +19,17 @@ export default function Hero() {
                 priority={true}
               />
             </div>
-
-            <div className="py-5 flex md:w-[31rem] w-screen justify-between flex-wrap flex-col md:flex-row gap-y-2 md:px-0 px-16">
-              <button className="bg-white py-4 px-5 rounded-[40px] text-secondary font-bold text-[16px] hover:bg-gradient-to-r from-teal-200 to-lime-200 shadow-lg">
-                Buat halaman masjid
-              </button>
-              <button
-                className="border-2 py-4 px-5 rounded-[40px] text-white font-bold text-[16px] hover:bg-gradient-to-r from-emerald-500 to-lime-600 drop-shadow-lg"
-                type="button"
-              >
-                Gabung halaman masjid
-              </button>
+            <div className="py-5 flex justify-center md:w-[31rem] w-screen gap-y-2 relative px-5 md:px-0">
+              <input
+                className="w-full h-10 md:h-12 rounded-full bg-transparent border-white border border-opacity-50 outline-none font-light text-base md:text-2xl p-5 pr-14 md:pr-16 backdrop-blur-sm text-white placeholder-gray-200 placeholder-opacity-50 placeholder:text-sm md:placeholder:text-xl"
+                placeholder="Cari masjid yang ingin kamu tahu!"
+              />
+              <MagnifyingGlassIcon
+                strokeWidth={2}
+                className="absolute right-10 md:right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 md:h-6 md:w-6 text-white"
+              />
             </div>
           </div>
-
           <div className="hidden md:grid">
             <Image
               src="/images/muslim.png"

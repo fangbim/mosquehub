@@ -3,11 +3,6 @@ import { KOTA } from '../lib/kota';
 import { Input } from '@material-tailwind/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
-
-interface CitySearchProps {
-    onSelectCity: (city: string) => void; // Prop type definition
-  }
-
 export default function Search({onSelectCity }) {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [filteredCities, setFilteredCities] = useState<string[]>([]);
@@ -34,7 +29,6 @@ export default function Search({onSelectCity }) {
   
     // Handle city click
     const handleCityClick = (city: string) => {
-      console.log("Selected City:", city);
       setSearchTerm(city); // Set the search term to the clicked city
       setFilteredCities([]); // Clear the list after selecting
       setHighlightedIndex(null); // Reset highlighted index
