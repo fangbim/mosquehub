@@ -1,5 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { LPData } from "../../data/LPData";
 
 export default function Hero() {
   return (
@@ -8,7 +9,7 @@ export default function Hero() {
         <div className="px-24 flex md:gap-40 2xl:w-[91.5rem] w-screen bg-secondary py-16 2xl:rounded-[50px] items-center justify-center">
           <div className="grid">
             <h1 className="font-black text-4xl text-center md:text-left md:text-5xl text-white mb-5 my-2">
-              Dapatkan Kemudahan Dalam Menjangkau Informasi Masjid
+              {LPData.tagline}
             </h1>
             <div className="grid md:hidden mx-16 my-4">
               <Image
@@ -16,7 +17,6 @@ export default function Hero() {
                 alt="hero-img"
                 width={2785}
                 height={1178}
-                priority={true}
               />
             </div>
             <div className="py-5 flex justify-center md:w-[31rem] w-screen gap-y-2 relative px-5 md:px-0">

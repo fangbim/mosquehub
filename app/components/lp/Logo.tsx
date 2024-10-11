@@ -9,7 +9,6 @@ export default function Logo() {
           height={imgresponsive}
           src="/images/logo-mosqueku.png"
           alt="logo"
-          priority={true}
         />
         <div className="px-3 items-center h-fit w-fit">
           <h1 className="text-4xl font-bold cursor-pointer">Mosqueku</h1>

@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import DoaHarian from "../utils/api/DoaHarian";
 import Navbar from "../components/lp/Navbar";
 import { amiri, cangaOne, pOne } from "../lib/fonts";
-import Loading from "../components/loading";
 
 import { Button, IconButton } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { CardPlacehoderSkeleton } from "../components/Skeleton";
 
 function DoaList() {
   const [doaList, setDoaList] = useState<any[]>([]);
@@ -65,21 +65,21 @@ function DoaList() {
               className="flex items-center justify-center pb-5"
               key={doa.id}
             >
-              <div className="grid bg-[#384B70] w-full py-10 px-6 md:px-20 rounded-xl text-white gap-3">
+              <div className="grid bg-[#384B70] w-full py-4  md:py-10 px-6 md:px-20 rounded-xl text-white gap-1 md:gap-3">
                 <p
-                  className={`${cangaOne.className} text-5xl md:text-6xl text-[#F5EFFF]`}
+                  className={`${cangaOne.className} text-3xl md:text-6xl text-[#F5EFFF]`}
                 >
                   {doa.judul}
                 </p>
                 <p
-                  className={`${amiri.className} text-4xl md:text-5xl text-right my-7 leading-[7rem] lg:leading-[7rem]`}
+                  className={`${amiri.className} text-2xl md:text-5xl text-right my-7 leading-[4rem] lg:leading-[7rem]`}
                 >
                   {doa.arab}
                 </p>
-                <p className="font-medium font-sans text-gray-50 ">
+                <p className="font-medium font-sans text-gray-50 text-xs md:text-base">
                   {doa.latin}
                 </p>
-                <p className="font-serif font-light bg-[#000000] px-4 py-2 rounded-md">
+                <p className="font-serif font-light bg-[#000000] px-4 py-2 rounded-md text-[9px] md:text-base">
                   &quot;{doa.terjemah}&quot;
                 </p>
               </div>
@@ -87,7 +87,7 @@ function DoaList() {
           ))}
         </div>
       ) : (
-        <Loading />
+        <CardPlacehoderSkeleton />
       )}
       <div className="flex items-center gap-0 md:gap-4 justify-center my-7">
         <Button

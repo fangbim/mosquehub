@@ -4,6 +4,7 @@ import Navbar from "../components/lp/Navbar";
 import { amiri, cangaOne, lilitaOne, pOne } from "../lib/fonts";
 import Dzikir from "../utils/api/Dzikir";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 import React from "react";
 import {
@@ -13,10 +14,9 @@ import {
   IconButton,
   Typography,
 } from "@material-tailwind/react";
-import Loading from "../components/loading";
 import ScrollToTopButton from "../components/button/ScrollToTopButton";
+import { CardPlacehoderSkeleton } from "../components/Skeleton";
 
-// Component for rendering dzikir list
 function DzikirList({ condition }: { condition: string }) {
   const [dzikirList, setDzikirList] = useState<any[]>([]);
   const [open, setOpen] = useState(false);
@@ -75,11 +75,11 @@ function DzikirList({ condition }: { condition: string }) {
             key={dzikir.id}
           >
             <div
-              className={`grid w-full py-10 px-6 md:px-20 rounded-xl text-white gap-3 ${
+              className={`grid w-full py-4 md:py-10 px-6 md:px-20 rounded-xl text-white gap-1 md:gap-3 ${
                 condition === "pagi" ? "bg-[#557C56]" : "bg-[#16423C]"
               }`}
             >
-              <div className="flex items-center justify-end">
+              <div className="flex items-center justify-end scale-75 md:scale-100 relative left-10 md:left-0">
                 <div className="w-fit p-2 text-2xl md:text-3xl flex space-x-3 text-[#000000] bg-[#E9EFEC] rounded-md">
                   <p
                     className={`${cangaOne.className} `}
@@ -97,21 +97,20 @@ function DzikirList({ condition }: { condition: string }) {
                     </IconButton>
                   )}
                 </div>
-                
               </div>
               <p
-                className={`${amiri.className} text-4xl md:text-5xl text-right my-7 leading-[5rem] lg:leading-[7rem]`}
+                className={`${amiri.className} text-2xl md:text-5xl text-right py-4 md:my-7 leading-[4rem] lg:leading-[7rem]`}
               >
                 {dzikir.arabic}
               </p>
-              <p className="font-serif font-light bg-[#0f0e0e] px-4 py-2 rounded-md">
+              <p className="font-serif font-light bg-[#0f0e0e] px-4 py-2 rounded-md text-[9px] md:text-base">
                 {dzikir.translation};
               </p>
             </div>
           </section>
         ))
       ) : (
-        <Loading />
+        <CardPlacehoderSkeleton/>
       )}
     </div>
   );
@@ -143,7 +142,11 @@ export default function Page() {
                 {condition.replace(/^./, condition[0].toUpperCase())}
               </span>
             </h1>
-            <label className="flex cursor-pointer select-none items-center">
+            <div className="flex items-center justify-around w-fit">
+              <span className={condition === 'pagi' ? '' : 'grayscale'}>
+                <Image width="100" height="100" src="https://img.icons8.com/clouds/100/sunrise.png" alt="sunrise" />
+              </span>
+              <label className="flex cursor-pointer select-none items-center">
               <div className="relative">
                 <input
                   type="checkbox"
@@ -163,6 +166,10 @@ export default function Page() {
                 ></div>
               </div>
             </label>
+            <span className={condition === 'sore' ? '' : 'grayscale'}>
+              <Image width="100" height="100" src="https://img.icons8.com/clouds/100/sun.png" alt="sun"/>
+            </span>
+            </div>
           </div>
           <div className="w-full h-[1px] bg-black"></div>
           <p className="my-6 text-sm md:text-base md:text-left text-justify font-normal font-poppins">

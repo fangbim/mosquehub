@@ -22,13 +22,10 @@ export default function Navbar () {
     } else {
       route.push(href)
     }
-
-    
   };
 
   const isHomePage = pathName == '/'
-
-
+  
   return (
     <div className='md:py-5 md:px-24 p-3 flex flex-wrap flex-col items-center w-full justify-between sticky top-0 z-50 bg-white md:flex-row'>
       <Link href='/' onClick={(e) => handleScroll(e, '/')}>

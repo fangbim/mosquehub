@@ -1,4 +1,4 @@
-import {Amiri, Changa_One, Lilita_One, Patua_One, Ultra} from '@next/font/google'
+import {Amiri, Changa_One, Lilita_One, Patua_One} from '@next/font/google'
 
 export const pOne = Patua_One({ 
     subsets: ['latin'],
