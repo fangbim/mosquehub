@@ -8,6 +8,7 @@ import { amiri, cangaOne, pOne } from "../lib/fonts";
 import { Button, IconButton } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { CardPlacehoderSkeleton } from "../components/Skeleton";
+import Footer from "../components/lp/Footer";
 
 function DoaList() {
   const [doaList, setDoaList] = useState<any[]>([]);
@@ -141,16 +142,8 @@ export default function Page() {
           </p>
         </div>
         <DoaList />
-        <div className="w-full items-start pb-10">
-          <div className="w-full h-[1px] bg-black"></div>
-          <p className="py-3">
-            API by{" "}
-            <a href="https://open-api.my.id/" target="_blank">
-              santrikoding.com
-            </a>
-          </p>
-        </div>
       </div>
+      <Footer credit={"API by santrikoding.com"} linkAPI="https://open-api.my.id/"/>
     </>
   );
 }

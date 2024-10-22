@@ -16,6 +16,7 @@ import {
 } from "@material-tailwind/react";
 import ScrollToTopButton from "../components/button/ScrollToTopButton";
 import { CardPlacehoderSkeleton } from "../components/Skeleton";
+import Footer from "../components/lp/Footer";
 
 function DzikirList({ condition }: { condition: string }) {
   const [dzikirList, setDzikirList] = useState<any[]>([]);
@@ -184,16 +185,8 @@ export default function Page() {
         </div>
         <DzikirList condition={condition} />
         <ScrollToTopButton/>
-        <div className="w-full items-start pb-10">
-          <div className="w-full h-[1px] bg-black"></div>
-          <p className="py-3">
-            API by{" "}
-            <a href="https://dzikir.zakiego.com/list-api" target="_blank">
-              zakiego
-            </a>
-          </p>
-        </div>
       </div>
+      <Footer credit={"API by zakiego"} linkAPI="https://dzikir.zakiego.com/list-api"/>
     </>
   );
 }

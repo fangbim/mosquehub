@@ -6,10 +6,10 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 export default function Search({onSelectCity }) {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [filteredCities, setFilteredCities] = useState<string[]>([]);
-    const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null); // Track highlighted city
-    const listRef = useRef<HTMLUListElement>(null); // Reference for the city list
+    const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null); 
+    const listRef = useRef<HTMLUListElement>(null); 
   
-    const MAX_VISIBLE_CITIES = 5; // Limit the number of visible cities
+    const MAX_VISIBLE_CITIES = 5; 
     
     // Handle the input change and filter cities
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,9 +29,9 @@ export default function Search({onSelectCity }) {
   
     // Handle city click
     const handleCityClick = (city: string) => {
-      setSearchTerm(city); // Set the search term to the clicked city
-      setFilteredCities([]); // Clear the list after selecting
-      setHighlightedIndex(null); // Reset highlighted index
+      setSearchTerm(city); 
+      setFilteredCities([]); 
+      setHighlightedIndex(null); 
       onSelectCity(city);
     };
   
@@ -66,7 +66,7 @@ export default function Search({onSelectCity }) {
         if (highlightedItem) {
           highlightedItem.scrollIntoView({
             behavior: 'smooth',
-            block: 'nearest', // Scroll the nearest edge of the element to the visible area
+            block: 'nearest', 
           });
         }
       }
@@ -80,13 +80,13 @@ export default function Search({onSelectCity }) {
           value={searchTerm}
           onChange={handleSearch}
           onKeyDown={handleKeyDown}
-          className="mb-2" // Add margin bottom for spacing
+          className="mb-2" 
         />
         {filteredCities.length > 0 && (
           <ul
             ref={listRef}
-            className="absolute z-10 mt-1 border border-gray-300 rounded-md max-h-40 overflow-y-auto bg-white shadow-lg" // Added absolute positioning
-            style={{ width: '100%' }} // Ensure it matches the input width
+            className="absolute z-10 mt-1 border border-gray-300 rounded-md max-h-40 overflow-y-auto bg-white shadow-lg"
+            style={{ width: '100%' }}
           >
             {filteredCities.slice(0, MAX_VISIBLE_CITIES).map((city, index) => (
               <li
@@ -95,7 +95,7 @@ export default function Search({onSelectCity }) {
                 className={`p-2 cursor-pointer ${
                   highlightedIndex === index ? 'bg-blue-100' : ''
                 } hover:bg-blue-100`}
-                onMouseEnter={() => setHighlightedIndex(index)} // Highlight city on mouse enter
+                onMouseEnter={() => setHighlightedIndex(index)} 
               >
                 {city}
               </li>

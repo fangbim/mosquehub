@@ -1,4 +1,4 @@
-import {Amiri, Changa_One, Lilita_One, Patua_One} from '@next/font/google'
+import {Amiri, Changa_One, Lilita_One, Oswald, Patua_One, Roboto } from '@next/font/google'
 
 export const pOne = Patua_One({ 
     subsets: ['latin'],
@@ -18,4 +18,14 @@ export const amiri = Amiri({
 export const lilitaOne = Lilita_One({ 
     subsets: ['latin'], 
     weight: ['400']
+})
+
+export const roboto = Roboto({ 
+    subsets: ['latin'], 
+    weight: ['300' ,'400', '500','700', '900']
+})
+
+export const oswald = Oswald({ 
+    subsets: ['latin'], 
+    weight: ['700']
 })

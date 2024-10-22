@@ -12,7 +12,7 @@ export default async function JadwalSholat(date : string ,city: string, country:
     const data = await res.json();
 
     if (data && data.data && data.data.timings) {
-      return data.data.timings; // Return only the prayer timings
+      return data.data.timings;
     }
 
     return null;

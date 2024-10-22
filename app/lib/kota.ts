@@ -1,3 +1,5 @@
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
+
 export const KOTA = {
     cities: [
       "SIMEULUE",
@@ -514,6 +516,6 @@ export const KOTA = {
       "INTAN JAYA",
       "DEIYAI",
       "JAYAPURA",
-    ]
+    ].map((city) => capitalizeFirstLetter(city))
   }
   

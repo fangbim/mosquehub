@@ -10,9 +10,10 @@ import { DayPicker } from "react-day-picker";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
  
 export default function DatePicker({ onDate }: { onDate: (date: string | undefined) => void }) {
-  const [date, setDate] = React.useState<Date>();
+  const today = new Date();
+  const [date, setDate] = React.useState<Date>(today);
 
-  const handleDateSelect = (selectedDate: Date | undefined) => {
+  const handleDateSelect = (selectedDate: Date) => {
     setDate(selectedDate);
     
     if (selectedDate) {

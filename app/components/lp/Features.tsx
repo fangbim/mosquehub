@@ -41,9 +41,9 @@ export default function Features() {
         <h1
           className={`${lilitaOne.className} text-3xl md:text-5xl -mb-7 py-2 px-3 text-center`}
         >
-          Fitur lain dari Mosqueku
+          Fitur lain dari MosqueHub
         </h1>
-        <div className="grid lg:flex gap-4 lg:gap-24 px-24 md:px scale-75 sm:scale-100 -my-36 sm:my-0">
+        <div className="grid lg:flex gap-4 lg:gap-24 px-24 md:px scale-75 sm:scale-100 -mt-36 -mb-20 sm:my-0">
           {features.map((features) => (
             <FeatureCard
               key={features.id}

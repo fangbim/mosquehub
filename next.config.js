@@ -1,3 +1,5 @@
+const withMDX = require('@next/mdx');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     async rewrites() {
@@ -9,8 +11,8 @@ const nextConfig = {
         ];
       },
     images: {
-      domains: ['img.icons8.com'],
+      domains: ['img.icons8.com', 'images.unsplash.com'],
     }
 }
 
-module.exports = nextConfig
+module.exports = withMDX()(nextConfig)

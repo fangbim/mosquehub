@@ -9,15 +9,10 @@ import Search from "../components/Search";
 import DatePicker from "../components/DatePicker";
 import { MapPinIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { GetLocation } from "../utils/getLocation";
+import Footer from "../components/lp/Footer";
 
 const TABLE_HEAD = ["Waktu Sholat", "Jam"];
-
-function capitalizeFirstLetter(str) {
-  return str
-    .split(" ") // Split the string into words
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
-    .join(" "); // Join the words back into a single string
-}
 
 export default function Page() {
   const today = new Date();
@@ -33,20 +28,24 @@ export default function Page() {
   };
 
   const dateIDN = today.toLocaleDateString('id-ID', options);
-  console.log(dateIDN);
-  
-
-  const location = "Surabaya";
   const country = "ID";
+  const city = GetLocation()
 
-  const [dataSholat, setDataSholat] = useState<any[]>([]); // Define state to store the fetched data
-  const [loading, setLoading] = useState<boolean>(true); // State to show loading status
-  const [selectedCity, setSelectedCity] = useState<string>(location);
+  const [dataSholat, setDataSholat] = useState<any[]>([]); 
+  const [loading, setLoading] = useState<boolean>(true); 
+  const [selectedCity, setSelectedCity] = useState<string>(' ');
   const [selectedDate, setSelectedDate] = useState<string>(date);
 
   const handleDateChange = (date: string) => {
     setSelectedDate(date);
   };
+
+  useEffect(() => {
+    if(city) {
+      setSelectedCity(city)
+    } 
+  }, [city])
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,17 +55,17 @@ export default function Page() {
         if (data) {
           setDataSholat(data);
           console.log(data);
-          
+          console.log(selectedCity)
         }
       } catch (error) {
         console.error("Error fetching prayer schedule:", error);
       } finally {
-        setLoading(false); // Stop loading after fetching the data
+        setLoading(false); 
       }
     };
 
-    fetchData(); // Fetch the data when the component mounts
-  }, [selectedCity, country, selectedDate]); // Dependencies for re-fetching if location or country changes
+    fetchData();
+  }, [selectedCity, country, selectedDate]); 
 
   const relevantKeys = [
     {
@@ -125,18 +124,18 @@ export default function Page() {
         <div className="w-full h-[1px] bg-black"></div>
         <div className="flex items-center justify-center py-4">
           {loading ? (
-            <Loading /> // Show loading text while fetching data
+            <Loading /> 
           ) : (
             <section className="w-full bg-white mb-10 md:mx-80">
               <div className="flex flex-col justify-center md:justify-between gap-8 md:flex-row md:items-center p-6">
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-0 md:gap-1">
                   <MapPinIcon strokeWidth={2} className="w-9" />
                   <span className="text-xl ">
-                    {capitalizeFirstLetter(selectedCity)}
+                    { selectedCity }
                   </span>
                 </div>
                 <div className="flex gap-2 md:gap-7 flex-col sm:flex-row">
-                  <DatePicker onDate={handleDateChange}/>
+                  <DatePicker onDate={handleDateChange} />
                   <div className="flex w-full shrink-0 gap-2 md:w-max">
                     <div className="w-full md:w-72">
                       <Search onSelectCity={setSelectedCity} />
@@ -183,7 +182,7 @@ export default function Page() {
                         return (
                           <tr key={index} className="hover:bg-gray-50">
                             <td className={`${classes} flex items-center justify-center`}>
-                                <div className="flex w-24 items-center gap-5">
+                                <div className="flex w-24 items-center gap-2 md:gap-3">
                                     <Image
                                       src={`/icons/time-prayer/${matchedKey?.icon}.png`}
                                       alt={`icon${matchedKey?.icon}`}
@@ -216,16 +215,8 @@ export default function Page() {
             </section>
           )}
         </div>
-        <div className="w-full items-start pb-10">
-          <div className="w-full h-[1px] bg-black"></div>
-          <p className="py-3">
-            API by{" "}
-            <a href="https://aladhan.com/" target="_blank">
-              Al Adhan
-            </a>
-          </p>
-        </div>
       </div>
+      <Footer credit="API by Al Adhan" linkAPI="https://aladhan.com/"/>
     </>
   );
 }
