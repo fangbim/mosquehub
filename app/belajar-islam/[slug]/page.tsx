@@ -8,7 +8,7 @@ import Image from "next/image";
 import { components } from '../../components/mdx-components';
 import Footer from '../../components/lp/Footer';
 
-export async function getMetaData({ params }: { params: { slug : string }}) {
+export async function generateMetadata({ params }: { params: { slug : string }}) {
   const konten = await fs.readFile(path.join(process.cwd(), 'app/data/content', `${params.slug}.mdx`), 'utf-8');
   interface Frontmatter{
     title: string
