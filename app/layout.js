@@ -2,6 +2,9 @@ import './globals.css'
 import "react-day-picker/style.css";
 import Head from "next/head";
 import {Poppins} from '@next/font/google'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 const poppins = Poppins({subsets: ['latin'], weight: ['100', '300', '500', '700']});
 
 
@@ -18,7 +21,15 @@ export default function RootLayout({ children }) {
         <title>Mosque ku</title>
         <meta  name="description" content="Startup digital yang fokus pada informasi mengenai kegiatan masjid di lingkungan anda" />
       </Head>
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <ToastContainer  
+          limit={3}
+          theme="colored"
+          position="top-center"
+          hideProgressBar
+        />
+        {children}
+      </body>
     </html>
   )
 }

@@ -28,7 +28,7 @@ export default async function Page() {
   return (
     <>
       <Navbar />
-      <div className="mx-5 md:mx-32 mb-24">
+      <div className="mx-5 md:mx-32 mb-24 mt-36">
         <div className="flex flex-col md:flex-row my-8 justify-center md:justify-between items-center md:items-end">
           <h1
             className={`${pOne.className} text-5xl md:text-8xl text-start justify-start`}

@@ -124,7 +124,7 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <div className="mx-5 md:mx-32">
+      <div className="mx-5 md:mx-32 mt-36">
         <div className="flex flex-col my-8">
           <h1
             className={`${pOne.className} text-6xl md:text-8xl md:text-left text-center`}

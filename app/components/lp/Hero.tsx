@@ -5,7 +5,7 @@ import { LPData } from "../../data/LPData";
 export default function Hero() {
   return (
     <section id="header">
-      <div className="flex items-center justify-center mt-9 bg-secondary md:bg-inherit">
+      <div className="flex items-center justify-center  mt-36 bg-secondary md:bg-inherit">
         <div className="px-24 flex md:gap-40 2xl:w-[91.5rem] w-screen bg-secondary py-16 2xl:rounded-[50px] items-center justify-center">
           <div className="grid">
             <h1 className="font-black text-4xl text-center md:text-left md:text-5xl text-white mb-5 my-2">

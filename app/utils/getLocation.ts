@@ -11,8 +11,8 @@ export function GetLocation () {
               async (position) => {
                 console.log("Geolocation berhasil"); // Tambahkan log setelah getCurrentPosition
                 
-                const { latitude, longitude } = position.coords;
-                const API_KEY_OPENCAGE = '5203e019312b4570b0fc47bc1f358f40'
+                const { latitude, longitude } = position.coords;  
+                const API_KEY_OPENCAGE = process.env.API_KEY_OPENCAGE;
                 console.log(`latitude: ${latitude}, longitude: ${longitude}`);
                 
                 try {

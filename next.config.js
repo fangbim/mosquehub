@@ -12,7 +12,7 @@ const nextConfig = {
       },
     images: {
       domains: ['img.icons8.com', 'images.unsplash.com'],
-    }
+    },
 }
 
 module.exports = withMDX()(nextConfig)
