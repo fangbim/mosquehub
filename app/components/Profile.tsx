@@ -102,8 +102,15 @@ export default function Profile() {
         <Typography variant="small" className="px-4">
           Buat Akun Masjid & Mulai Berkontribusi 
         </Typography>
-        <div className="w-ful items-center flex justify-center border mx-4 py-2 mb-2">
-          <PlusIcon className="h-4 w-4" />
+        <div className="w-full flex items-center">
+          <Button
+            variant="filled"
+            color="blue-gray"
+            className="w-full mx-4 my-2 items-center flex justify-center rounded-sm"
+            onClick={() => route.push('/register-masjid')}
+          >
+            <PlusIcon className="h-4 w-4" />
+          </Button>
         </div>
         {profileMenuItems.map(({ label, icon }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;

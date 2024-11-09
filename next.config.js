@@ -8,6 +8,10 @@ const nextConfig = {
             source: '/api/dzikir/:path*',
             destination: 'https://dzikir.zakiego.com/api/v0/dzikir-:path*', 
           },
+          {
+            source: '/:path*/:z/:y/:x',
+            destination: process.env.MAPBOX_URL,
+          }
         ];
       },
     images: {

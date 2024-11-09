@@ -80,6 +80,7 @@ export default function Register () {
                 Email
               </Typography>
               <Input
+                type='email'
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 size='lg'
@@ -106,6 +107,7 @@ export default function Register () {
                 Phone Number
               </Typography>
               <Input
+                type='number'
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
                 size='lg'

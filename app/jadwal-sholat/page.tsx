@@ -122,7 +122,7 @@ export default function Page() {
           <div className="text-lg md:text-xl">{dateIDN}</div>
         </div>
         <div className="w-full h-[1px] bg-black"></div>
-        <div className="flex items-center justify-center py-4">
+        <div className="flex items-center w-auto h-screen justify-center py-4">
           {loading ? (
             <Loading /> 
           ) : (
