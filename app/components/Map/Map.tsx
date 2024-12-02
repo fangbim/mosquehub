@@ -15,10 +15,10 @@ const markerIcon = L.divIcon({
   className: 'foo'
 })
 
-const Map = ({}) => {
+const Map = ({ latitude, longitude }) => {
   return (
     <MapContainer
-      center={[-7.0054194948913056, 112.34130532933098]}
+      center={[latitude, longitude]}
       zoom={15}
       scrollWheelZoom={false}
       style={{ height: '100%' }}
@@ -28,7 +28,7 @@ const Map = ({}) => {
         url="/:path*/{z}/{y}/{x}"
       />
       <Marker
-        position={[-7.0054194948913056, 112.34130532933098]}
+        position={[latitude, longitude]}
         icon={markerIcon}
       ></Marker>
     </MapContainer>

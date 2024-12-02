@@ -1,6 +1,6 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { LPData } from "../../data/LPData";
+import SearchListMosque from "../SearchListMosque";
 
 export default function Hero() {
   return (
@@ -19,16 +19,7 @@ export default function Hero() {
                 height={1178}
               />
             </div>
-            <div className="py-5 flex justify-center md:w-[31rem] w-screen gap-y-2 relative px-5 md:px-0">
-              <input
-                className="w-full h-10 md:h-12 rounded-full bg-transparent border-white border border-opacity-50 outline-none font-light text-base md:text-2xl p-5 pr-14 md:pr-16 backdrop-blur-sm text-white placeholder-gray-200 placeholder-opacity-50 placeholder:text-sm md:placeholder:text-xl"
-                placeholder="Cari masjid yang ingin kamu tahu!"
-              />
-              <MagnifyingGlassIcon
-                strokeWidth={2}
-                className="absolute right-10 md:right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 md:h-6 md:w-6 text-white"
-              />
-            </div>
+            <SearchListMosque />
           </div>
           <div className="hidden md:grid">
             <Image
