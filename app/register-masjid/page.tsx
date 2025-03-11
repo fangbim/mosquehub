@@ -1,207 +1,219 @@
 'use client'
-import { useState } from 'react';
-import Navbar from '../components/lp/Navbar';
-import { WithAuth } from '../components/WithAuth';
+import { useState } from 'react'
+import Navbar from '../components/lp/Navbar'
+import { WithAuth } from '../components/WithAuth'
+import {
+  Form,
+  Input,
+  Textarea,
+  Select,
+  SelectItem,
+  Button
+} from '@nextui-org/react'
+import MapInput from '../components/Map/MapInput'
+
+export const fasilitas = [
+  { key: 'toilet', label: 'Toilet' },
+  { key: 'wudhu', label: 'Wudhu' },
+  { key: 'parkir', label: 'Parkir' },
+  { key: 'kantin', label: 'Kantin' },
+  { key: 'perpustakaan', label: 'Perpustakaan' },
+  { key: 'playground', label: 'Playground' },
+  { key: 'wifi', label: 'Free Wifi' }
+]
 
 const RegisterMasjid = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        address: '',
-        image: '',
-        description: '',
-        about: '',
-        facilities: '',
-        organization: '',
-        contactPhone: '',
-        contactEmail: '',
-        socialMedia: '',
-        locationLatitude: '',
-        locationLongitude: '',
-        rating: '',
-      });
-    
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission logic here
-        console.log(formData);
-      };
-    
-      return (
-        <>
-        <Navbar/>
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto my-44 p-4 bg-white rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4">Create Mosque</h2>
-          <label className="block mb-2">
-            Mosque Name:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Address:
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Image URL:
-            <input
-              type="url"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Description:
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            About:
-            <textarea
-              name="about"
-              value={formData.about}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Facilities (comma-separated):
-            <input
-              type="text"
-              name="facilities"
-              value={formData.facilities}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Organization (JSON format):
-            <textarea
-              name="organization"
-              value={formData.organization}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Contact Phone:
-            <input
-              type="tel"
-              name="contactPhone"
-              value={formData.contactPhone}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Contact Email:
-            <input
-              type="email"
-              name="contactEmail"
-              value={formData.contactEmail}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Social Media (JSON format):
-            <textarea
-              name="socialMedia"
-              value={formData.socialMedia}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Location Latitude:
-            <input
-              type="number"
-              name="locationLatitude"
-              value={formData.locationLatitude}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              step="any"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Location Longitude:
-            <input
-              type="number"
-              name="locationLongitude"
-              value={formData.locationLongitude}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              step="any"
-              required
-            />
-          </label>
-    
-          <label className="block mb-2">
-            Rating:
-            <input
-              type="number"
-              name="rating"
-              value={formData.rating}
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              step="0.1"
-              min="0"
-              max="5"
-              required
-            />
-          </label>
-    
-          <button
-            type="submit"
-            className="mt-4 w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+  const [action, setAction] = useState('')
+  const [selectedImage, setSelectedImage] = useState(null)
+
+  const [formData, setFormData] = useState({
+    latitude: -7.257472, // Default latitude
+    longitude: 112.752088, // Default longitude
+    address: ''
+  })
+
+  console.log(formData)
+  
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+  };
+
+  const handleMapLocationChange = ({ latitude, longitude, address }) => {
+    setFormData(prev => ({
+      ...prev,
+      latitude,
+      longitude,
+      address
+    }))
+  }
+
+  const handleInputChange = e => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
+
+  return (
+    <>
+      <Navbar />
+      <div className='min-h-screen bg-gray-50 py-40'>
+        <div className='bg-white rounded-2xl shadow-lg px-10 max-w-4xl mx-auto py-20'>
+          <h1 className='text-xl font-bold text-center mb-6'>Create Mosque</h1>
+          <Form
+            className='grid grid-cols-1 md:grid-cols-2 gap-6'
+            validationBehavior='native'
+            onReset={() => setAction('reset')}
+            onSubmit={e => {
+              e.preventDefault()
+              let data = Object.fromEntries(new FormData(e.currentTarget))
+
+              setAction(`submit ${JSON.stringify(data)}`)
+            }}
           >
-            Create Mosque
-          </button>
-        </form>
-        </>
-    );
+            <Input
+              isRequired
+              errorMessage='Masukkan Nama Masjid'
+              label='Nama Masjid'
+              labelPlacement='outside'
+              name='namaMasjid'
+              placeholder='e.g Masjid Agung Surabaya'
+              type='text'
+            />
+            <Input
+              isRequired
+              errorMessage='Masukkan Alamat Masjid'
+              label='Alamat'
+              labelPlacement='outside'
+              name='alamat'
+              placeholder='e.g jl. Kebon Rojo No. 1'
+              type='text'
+            />
+            <Textarea
+              isRequired
+              className='max-w-full'
+              label='Deskripsi'
+              labelPlacement='outside'
+              placeholder='Masukkan deskripsi masjid (sejarah, visi, misi, dll) maksimal 950 karakter'
+            />
+            <Select
+              className='max-w-full'
+              label='Fasilitas'
+              labelPlacement='outside'
+              placeholder='Pilih fasilitas masjid'
+              selectionMode='multiple'
+            >
+              {fasilitas.map(fasilitas => (
+                <SelectItem key={fasilitas.key}>{fasilitas.label}</SelectItem>
+              ))}
+            </Select>
+            <Input
+              isRequired
+              errorMessage='Masukkan No Telepon'
+              label='No Telepom'
+              labelPlacement='outside'
+              name='telp'
+              placeholder='e.g 085125763542'
+              type='number'
+            />
+            <Input
+              isRequired
+              errorMessage='Masukkan Email'
+              label='Email'
+              labelPlacement='outside'
+              name='email'
+              placeholder='e.g masjidku@gmail.com'
+              type='email'
+            />
+            <Input
+              errorMessage='Masukkan Username Facebook'
+              label='Facebook'
+              labelPlacement='outside'
+              name='facebook'
+              placeholder='e.g masjid.ku'
+              type='text'
+            />
+            <Input
+              errorMessage='Masukkan Username Instagram'
+              label='Instagram'
+              labelPlacement='outside'
+              name='instagram'
+              placeholder='e.g masjid.ku'
+              type='text'
+            />
+            <Input
+              errorMessage='Masukkan Username X'
+              label='X'
+              labelPlacement='outside'
+              name='x'
+              placeholder='e.g masjid.ku'
+              type='text'
+            />
+            <Input
+              errorMessage='Masukkan Username Facebook'
+              label='Lokasi'
+              readOnly
+              labelPlacement='outside'
+              name='lokasi'
+              value={formData.address}
+              onChange={handleInputChange}
+              type='text'
+            />
+            <Input
+              isRequired
+              errorMessage='Upload Foto Masjid'
+              label='Foto Cover Masjid'
+              labelPlacement='outside'
+              name='fotoMasjid'
+              placeholder='e.g masjid.ku'
+              type='file'
+              onChange={imageChange}
+              accept='image/*'
+            />
+            {selectedImage && (
+          <div className='w-full h-40 overflow-hidden rounded-md border border-gray-300'> 
+            <img
+              src={URL.createObjectURL(selectedImage)}
+              alt="Thumb"
+            />
+          </div>
+        )}
+            <div className='w-full h-40 rounded-lg overflow-hidden col-span-1'>
+              <MapInput
+                latitude={formData.latitude}
+                longitude={formData.longitude}
+                onLocationChange={handleMapLocationChange}
+              />
+            </div>
+            <div className=' w-full col-span-2 py-6'>
+              <Button
+                color='primary'
+                type='submit'
+                className='w-full'
+                size='lg'
+              >
+                Submit
+              </Button>
+            </div>
+
+            {action && (
+              <div className='text-small text-default-500'>
+                Action: <code>{action}</code>
+              </div>
+            )}
+          </Form>
+        </div>
+      </div>
+    </>
+  )
 }
 
-export default WithAuth(RegisterMasjid);
+export default WithAuth(RegisterMasjid)

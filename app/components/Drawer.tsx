@@ -10,7 +10,7 @@ export function DrawerDefault () {
 
   const openDrawer = () => setOpen(true)
   const closeDrawer = () => setOpen(false)
-
+  
   return (
     <React.Fragment>
       <div className='fixed top-4 left-4 z-50'>

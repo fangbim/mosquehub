@@ -3,12 +3,13 @@ import Features from "./components/lp/Features";
 import Feedback from "./components/lp/Feedback";
 import Footer from "./components/lp/Footer";
 import Hero from "./components/lp/Hero";
-import Navbar from "./components/lp/Navbar";;
+import Navbar from "./components/lp/Navbar";
+import {NextUIProvider} from '@nextui-org/react';
 
 
 export default function Home() {
   return (
-    <>
+    <NextUIProvider>
       <main className="min-w-full overflow-x-hidden ">
       <Navbar/>
       <Hero/>
@@ -17,6 +18,6 @@ export default function Home() {
       <Feedback/>
       <Footer/>
     </main>
-    </>
+    </NextUIProvider>
   )
 }

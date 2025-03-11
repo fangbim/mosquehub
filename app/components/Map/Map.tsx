@@ -2,6 +2,7 @@
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
+import { memo, useEffect } from 'react'
 
 const markerIcon = L.divIcon({
   html: `<svg width="42" height="49" viewBox="0 0 42 49" fill="none" xmlns="http://www.w3.org/2000/svg">
